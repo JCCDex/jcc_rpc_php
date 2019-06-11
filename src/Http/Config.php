@@ -3,9 +3,9 @@
  * 获取配置类
  */
 
-namespace JxxDev\JccRpc\Http;
+namespace JccDex\Http;
 
-use JxxDev\JccRpc\Router;
+use JccDex\Router;
 
 class Config extends Base
 {

@@ -3,7 +3,7 @@
  * 基础控制器
  */
 
-namespace JxxDev\JccRpc\Http;
+namespace JccDex\Rpc;
 
 use GuzzleHttp\Client;
 

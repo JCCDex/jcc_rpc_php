@@ -1,5 +1,5 @@
 <?php
-namespace JxxDev\JccRpc;
+namespace JccDex;
 
 class Router {
 
