@@ -1,0 +1,22 @@
+{
+    "name": "jccdex/jcc_rpc_php",
+    "description": "a php jcc rpc framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gxheart",
+            "email": "bbxycx.18@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.0",
+        "hprose/hprose-php": "dev-master",
+        "guzzlehttp/guzzle": "^6.3@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "JxxDev\\JccRpc\\": "src/"
+        }
+    }
+}
