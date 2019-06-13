@@ -21,12 +21,12 @@ class Info extends Base
 
     /**
      * get ticker info
-     * @param $base
-     * @param $counter
+     * @param string $base
+     * @param string $counter
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getTicker($base, $counter)
+    public function getTicker(string $base, string $counter)
     {
         $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
         $res = $this->client->request('GET', Router::TICKER_URL . $currency, [
@@ -54,13 +54,13 @@ class Info extends Base
 
     /**
      * get depth
-     * @param $base
-     * @param $counter
-     * @param $type
+     * @param string $base
+     * @param string $counter
+     * @param string $type
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getDepth($base, $counter, $type)
+    public function getDepth(string $base, string $counter, string $type)
     {
         $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
         $res = $this->client->request('GET', Router::DEPTH_URL . $currency . '/' . $type, [
@@ -73,13 +73,13 @@ class Info extends Base
 
     /**
      * get kline
-     * @param $base
-     * @param $counter
-     * @param $type
+     * @param string $base
+     * @param string $counter
+     * @param string $type
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getKline($base, $counter, $type)
+    public function getKline(string $base, string $counter, string $type)
     {
         $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
         $res = $this->client->request('GET', Router::KLINE_URL . $currency . '/' . $type, [
@@ -114,12 +114,12 @@ class Info extends Base
 
     /**
      * get ticker from cmc
-     * @param $token
-     * @param $currency
+     * @param string $token
+     * @param string $currency
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getTickerFromCMC($token, $currency)
+    public function getTickerFromCMC(string $token, string $currency)
     {
         $res = $this->client->request('GET', '/' . strtolower($token) . '_' . strtolower($currency) . '.json', [
             'headers' => [
