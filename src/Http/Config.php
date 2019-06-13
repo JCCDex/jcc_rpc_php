@@ -26,14 +26,13 @@ class Config extends Base
      */
     public function getConfig()
     {
-        $res = $this->client->request('GET', $this->getUrl() . Router::CONFIG_URL, [
+        $res = $this->client->request('GET', Router::CONFIG_URL, [
             'headers' => [
                 'Accept' => 'application/json'
             ]
         ]);
-        $data = $res->getBody();
-        return $data;
-        // return json_decode($data, true);
+        return $res->getBody();
+        // return json_decode($res->getBody(), true);
     }
 
 }

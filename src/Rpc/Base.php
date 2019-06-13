@@ -42,10 +42,10 @@ class Base
      */
     public function __construct($hosts, $port, $https)
     {
-        $this->client = new Client(['verify' => false]);
         $this->hosts = $hosts;
         $this->port = $port;
         $this->https = $https;
+        $this->client = new Client(['verify' => false, 'base_uri' => $this->getUrl(), 'timeout' => 3.0]);
     }
 
     /**

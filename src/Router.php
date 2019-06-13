@@ -25,4 +25,5 @@ class Router {
     const KLINE_URL                 = '/info/kline/'; // 获取K线数据
     const HISTORY_URL               = '/info/history/'; // 获取最新成交
     const ALLTICKERS_URL            = '/info/alltickers/'; // 获取24小时行情数据
+    const TICKER_URL                = '/info/ticker/'; // 获取数据详情
 }
