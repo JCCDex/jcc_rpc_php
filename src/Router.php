@@ -12,7 +12,7 @@ class Router {
     const TX_URL                    = '/exchange/tx/'; // 查询历史交易记录
     const PAYMENTS_URL              = '/exchange/payments/'; // 查询历史转账记录
     const ORDERS_URL                = '/exchange/orders/'; // 查询当前委托
-    const SEQUENCE_URL              = '/exchange/orders/'; // 获取交易序列号(前端签名需要)
+    const SEQUENCE_URL              = '/exchange/sequence/'; // 获取交易序列号(前端签名需要)
     const SIGN_ORDER_URL            = '/exchange/sign_order'; // 挂单(前端签名)
     const SIGN_CANCEL_ORDER_URL     = '/exchange/sign_cancel_order'; // 撤单(前端签名)
     const SIGN_PAYMENT_URL          = '/exchange/sign_payment'; // 转账(前端签名)
