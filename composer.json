@@ -8,7 +8,6 @@
             "email": "bbxycx.18@163.com"
         }
     ],
-    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.0-dev"
