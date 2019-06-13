@@ -102,7 +102,7 @@ class Info extends Base
     public function getHistory(string $base, string $counter, string $type, string $time)
     {
         $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $params = $type === 'newest' ?: ['time' => $time];
+        $params = $type === 'newest' ? ['time' => $time] : [];
         $res = $this->client->request('GET', Router::HISTORY_URL . $currency . '/' . $type, [
             'headers' => [
                 'Accept' => 'application/json'
