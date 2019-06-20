@@ -99,7 +99,7 @@ class Info extends Base
      */
     public function getTickerFromCMC(string $token, string $currency)
     {
-        $this->options['t'] = microtime(true) * 1000;
+        $this->options['query'] = ['t' => microtime(true) * 1000];
         $response = $this->client->request('GET', '/' . strtolower($token) . '_' . strtolower($currency) . '.json', $this->options);
         return $response->getBody();
     }
