@@ -6,9 +6,10 @@
 namespace JccDex\Http;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\CurlHandler;
-use JccDex\Middleware\HMACRequestHandler;
+use JccDex\Middleware\RequestHandler;
 
 class Base
 {
@@ -60,7 +61,8 @@ class Base
 
         $handler = new CurlHandler();
         $stack = HandlerStack::create($handler);
-        $stack->push(new HMACRequestHandler());
+        $stack->push(new RequestHandler());
+
         $this->client = new Client([
             'verify' => false,
             'base_uri' => $this->getUrl(),
@@ -138,4 +140,20 @@ class Base
         return substr(bin2hex($bytes), 0, $lenght);
     }
 
+    /**
+     * error response
+     * @param $e
+     * @param string $type
+     * @return array|false|string
+     */
+    public function errorResponse($e, $type = "json")
+    {
+        $data = [
+            'code' => $e->getCode(),
+            'msg' => $e->getMessage(),
+            'data' => [],
+            'success' => false
+        ];
+        return $type === 'json' ? json_encode($data) : $data;
+    }
 }

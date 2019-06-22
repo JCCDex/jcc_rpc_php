@@ -17,3 +17,11 @@ echo "<br><br>";
 echo "获取K线数据<br>";
 echo $info->getKline('JJCC', 'SWT', 'hour');
 echo "<br><br>";
+
+echo "获取最新成交<br>";
+echo $info->getHistory('JJCC', 'SWT', 'normal', time());
+echo "<br><br>";
+
+echo "获取最新成交<br>";
+echo $info->getTickerFromCMC('JJCC', 'SWT');
+echo "<br><br>";

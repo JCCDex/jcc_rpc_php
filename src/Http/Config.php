@@ -5,6 +5,7 @@
 
 namespace JccDex\Http;
 
+use GuzzleHttp\Exception\ClientException;
 use JccDex\Router;
 
 class Config extends Base
@@ -26,9 +27,12 @@ class Config extends Base
      */
     public function getConfig()
     {
-        $response = $this->client->request('GET', Router::CONFIG_URL, $this->options);
-        return $response->getBody();
-        // return json_decode($response->getBody(), true);
+        try {
+            $response = $this->client->request('GET', Router::CONFIG_URL, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
 }

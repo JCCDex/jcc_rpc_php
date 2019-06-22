@@ -5,7 +5,7 @@ namespace JccDex\Middleware;
 
 use Psr\Http\Message\RequestInterface;
 
-class HMACRequestHandler
+class RequestHandler
 {
     /**
      * @param callable $handler

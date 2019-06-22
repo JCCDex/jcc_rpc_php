@@ -39,4 +39,16 @@ class InfoTest extends TestCase
         $response = $this->info->getKline('JJCC', 'SWT', 'hour');
         $this->assertJson($response);
     }
+
+    public function testGetHistory()
+    {
+        $response = $this->info->getHistory('JJCC', 'SWT', 'normal', time());
+        $this->assertJson($response);
+    }
+
+    public function testGetTickerFromCMC()
+    {
+        $response = $this->info->getTickerFromCMC('JJCC', 'SWT');
+        $this->assertJson($response);
+    }
 }
