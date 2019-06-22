@@ -18,6 +18,17 @@ class Info extends Base
     }
 
     /**
+     * get all tickers
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getAllTickers()
+    {
+        $response = $this->client->request('GET', Router::ALLTICKERS_URL, $this->options);
+        return $response->getBody();
+    }
+
+    /**
      * get ticker info
      * @param $base
      * @param $counter
@@ -26,19 +37,8 @@ class Info extends Base
      */
     public function getTicker($base, $counter)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::TICKER_URL . $currency, $this->options);
-        return $response->getBody();
-    }
-
-    /**
-     * get all tickers
-     * @return \Psr\Http\Message\StreamInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function getAllTickers()
-    {
-        $response = $this->client->request('GET', Router::ALLTICKERS_URL, $this->options);
+        $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+        $response = $this->client->request('GET', Router::TICKER_URL . $base, $this->options);
         return $response->getBody();
     }
 
@@ -52,8 +52,8 @@ class Info extends Base
      */
     public function getDepth($base, $counter, $type)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::DEPTH_URL . $currency . '/' . $type, $this->options);
+        $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+        $response = $this->client->request('GET', Router::DEPTH_URL . $base . '/' . $type, $this->options);
         return $response->getBody();
     }
 
@@ -67,8 +67,8 @@ class Info extends Base
      */
     public function getKline($base, $counter, $type)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::KLINE_URL . $currency . '/' . $type, $this->options);
+        $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+        $response = $this->client->request('GET', Router::KLINE_URL . $base . '/' . $type, $this->options);
         return $response->getBody();
     }
 
@@ -83,7 +83,7 @@ class Info extends Base
      */
     public function getHistory($base, $counter, $type, $time)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
+        $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
         $params = $type === 'newest' ? ['time' => $time] : [];
         $this->options['query'] = $params;
         $response = $this->client->request('GET', Router::HISTORY_URL . $currency . '/' . $type, $this->options);
