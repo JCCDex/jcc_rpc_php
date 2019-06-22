@@ -77,11 +77,13 @@ class Base
      */
     public function getUrl()
     {
+        $httpType = $this->https ? 'https://' : 'http://';
         if (is_array($this->hosts) && !empty($this->hosts)) {
-            $httpType = $this->https ? 'https://' : 'http://';
             $randomIndex = count($this->hosts) > 1 ? mt_rand(0, count($this->hosts) - 1) : 0;
             $randomHost = $this->hosts[$randomIndex];
             $this->url = $httpType . $randomHost . ':' . $this->port;
+        } else {
+            $this->url = $httpType . $this->hosts . ':' . $this->port;
         }
         return $this->url;
     }
