@@ -6,6 +6,9 @@
 namespace JccDex\Http;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\CurlHandler;
+use JccDex\Middleware\HMACRequestHandler;
 
 class Base
 {
@@ -54,7 +57,16 @@ class Base
         $this->hosts = $hosts;
         $this->port = $port;
         $this->https = $https;
-        $this->client = new Client(['verify' => false, 'base_uri' => $this->getUrl(), 'timeout' => 3.0]);
+
+        $handler = new CurlHandler();
+        $stack = HandlerStack::create($handler);
+        $stack->push(new HMACRequestHandler());
+        $this->client = new Client([
+            'verify' => false,
+            'base_uri' => $this->getUrl(),
+            'timeout' => 3000,
+            'handler' => $stack
+        ]);
     }
 
     /**
