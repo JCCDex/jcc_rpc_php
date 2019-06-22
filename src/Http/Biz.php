@@ -314,4 +314,260 @@ class Biz extends Base
         $response = $this->client->request('GET', $url, $this->options);
         return $response->getBody();
     }
+
+    /**
+     * create deposit order
+     * @param string $userName
+     * @param string $base
+     * @param string $amount
+     * @param string $baseWallet
+     * @param string $jtWallet
+     * @param string $agentWallet
+     * @param string $agentID
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createDepositOrder(string $userName, string $base, string $amount, string $baseWallet, string $jtWallet, string $agentWallet, string $agentID)
+    {
+        $this->options['form_params'] = [
+            'base' => $base,
+            'amount' => $amount,
+            'baseWallet' => $baseWallet,
+            'jtWallet' => $jtWallet,
+            'agentWallet' => $agentWallet,
+            'agentID' => $agentID
+        ];
+        $response = $this->client->request('POST', Router::CREATE_DEPOSIT_ORDER_URL, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * cancel deposit order
+     * @param string $userName
+     * @param string $base
+     * @param string $orderID
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \Exception
+     */
+    public function cancelDepositOrder(string $userName, string $base, string $orderID)
+    {
+        $this->options['form_params'] = [
+            'base' => $base,
+            'orderID' => $orderID
+        ];
+        $response = $this->client->delete(Router::CANCEL_DEPOSIT_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * update deposit order
+     * @param string $userName
+     * @param string $base
+     * @param string $orderID
+     * @param string $hash
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateDepositOrder(string $userName, string $base, string $orderID, string $hash)
+    {
+        $this->options['form_params'] = [
+            'base' => $base,
+            'orderID' => $orderID,
+            'hash' => $hash
+        ];
+        $response = $this->client->request('POST', Router::UPDATE_DEPOSIT_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get deposit detail
+     * @param string $userName
+     * @param string $base
+     * @param string $orderID
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getDepositDetail(string $userName, string $base, string $orderID)
+    {
+        $this->options['query'] = [
+            'base' => $base,
+            'orderID' => $orderID
+        ];
+        $response = $this->client->request('GET', Router::ORDER_DETAIL_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get pending deposit
+     * @param string $userName
+     * @param string $base
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getPendingDeposit(string $userName, string $base)
+    {
+        $this->options['query'] = [
+            'base' => $base
+        ];
+        $response = $this->client->request('GET', Router::PENDING_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get deposit orders
+     * @param string $userName
+     * @param string $base
+     * @param int $page
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getDepositOrders(string $userName, string $base, int $page)
+    {
+        $this->options['query'] = [
+            'page' => $page,
+            'base' => $base
+        ];
+        $response = $this->client->request('GET', Router::MY_ORDERS_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * create withdraw order
+     * @param string $userName
+     * @param string $base
+     * @param string $amount
+     * @param string $baseWallet
+     * @param string $jtWallet
+     * @param string $agentWallet
+     * @param string $agentID
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createWithdrawOrder(string $userName, string $base, string $amount, string $baseWallet, string $jtWallet, string $agentWallet, string $agentID)
+    {
+        $this->options['form_params'] = [
+            'base' => $base,
+            'amount' => $amount,
+            'baseWallet' => $baseWallet,
+            'jtWallet' => $jtWallet,
+            'agentWallet' => $agentWallet,
+            'agentID' => $agentID,
+        ];
+        $response = $this->client->request('POST', Router::TW_CREATE_ORDERS_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get withdraw orders
+     * @param string $userName
+     * @param string $base
+     * @param string $page
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getWithdrawOrders(string $userName, string $base, string $page)
+    {
+        $this->options['query'] = [
+            'base' => $base,
+            'page' => $page
+        ];
+        $response = $this->client->request('GET', Router::TW_MY_ORDERS_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * update withdraw order
+     * @param string $userName
+     * @param string $orderID
+     * @param string $hash
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateWithdrawOrder(string $userName, string $orderID, string $hash)
+    {
+        $this->options['form_params'] = [
+            'orderID' => $orderID,
+            'hash' => $hash
+        ];
+        $response = $this->client->request('POST', Router::TW_UPDATE_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get withdraw detail
+     * @param string $userName
+     * @param string $base
+     * @param string $orderID
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getWithdrawDetail(string $userName, string $base, string $orderID)
+    {
+        $this->options['query'] = [
+            'base' => $base,
+            'orderID' => $orderID
+        ];
+        $response = $this->client->request('GET', Router::TW_ORDER_DETAIL_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get agent info
+     * @param string $userName
+     * @param string $base
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getAgentInfo(string $userName, string $base)
+    {
+        $this->options['query'] = [
+            'base' => $base
+        ];
+        $response = $this->client->request('GET', Router::AGENT_INFO_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get coin list
+     * @param string $userName
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCoinlist(string $userName)
+    {
+        $response = $this->client->request('GET', Router::COIN_LIST_URL. self::uniqid(8) . '/' . $userName, $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get news report list
+     * @param int $count
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getNewsReportList(int $count)
+    {
+        $this->options['query'] = [
+            'count' => $count
+        ];
+        $response = $this->client->request('GET', Router::ADV_INFO_URL. self::uniqid(8), $this->options);
+        return $response->getBody();
+    }
+
+    /**
+     * get notice list
+     * @param int $type
+     * @param int $count
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getNoticeList(int $type, int $count)
+    {
+        $this->options['query'] = [
+            'type' => $type,
+            'count' => $count
+        ];
+        $response = $this->client->request('GET', Router::ADV_NOTICE_URL. self::uniqid(8), $this->options);
+        return $response->getBody();
+    }
 }
