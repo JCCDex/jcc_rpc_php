@@ -19,11 +19,11 @@ class Exchange extends Base
 
     /**
      * get balances
-     * @param string $address
+     * @param $address
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getBalances(string $address)
+    public function getBalances($address)
     {
         $response = $this->client->request('GET', Router::BALANCE_URL . $address, $this->options);
         return $response->getBody();
@@ -31,13 +31,13 @@ class Exchange extends Base
 
     /**
      * get historic transactions
-     * @param string $address
+     * @param $address
      * @param int $ledger
      * @param int $seq
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getHistoricTransactions(string $address, int $ledger, int $seq)
+    public function getHistoricTransactions($address, int $ledger, int $seq)
     {
         $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
         $this->options['query'] = $params;
@@ -47,13 +47,13 @@ class Exchange extends Base
 
     /**
      * get historic payments
-     * @param string $address
+     * @param $address
      * @param int $ledger
      * @param int $seq
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getHistoricPayments(string $address, int $ledger, int $seq)
+    public function getHistoricPayments($address, int $ledger, int $seq)
     {
         $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
         $this->options['query'] = $params;
@@ -63,12 +63,12 @@ class Exchange extends Base
 
     /**
      * get orders
-     * @param string $address
+     * @param $address
      * @param int $page
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getOrders(string $address, int $page)
+    public function getOrders($address, int $page)
     {
         $response = $this->client->request('GET', Router::ORDERS_URL . $address . '/' . $page, $this->options);
         return $response->getBody();
@@ -76,11 +76,11 @@ class Exchange extends Base
 
     /**
      * create order
-     * @param string $sign
+     * @param $sign
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function createOrder(string $sign)
+    public function createOrder($sign)
     {
         $this->options['form_params'] = ['sign' => $sign];
         $response = $this->client->request('POST', Router::SIGN_ORDER_URL, $this->options);
@@ -89,10 +89,10 @@ class Exchange extends Base
 
     /**
      * delete order
-     * @param string $sign
+     * @param $sign
      * @return \Psr\Http\Message\StreamInterface
      */
-    public function deleteOrder(string $sign)
+    public function deleteOrder($sign)
     {
         $this->options['form_params'] = ['sign' => $sign];
         $response = $this->client->delete(Router::SIGN_CANCEL_ORDER_URL, $this->options);
@@ -101,11 +101,11 @@ class Exchange extends Base
 
     /**
      * get sequeue
-     * @param string $address
+     * @param $address
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getSequence(string $address)
+    public function getSequence($address)
     {
         $response = $this->client->request('GET', Router::SEQUENCE_URL . $address, $this->options);
         return $response->getBody();
@@ -113,11 +113,11 @@ class Exchange extends Base
 
     /**
      * transfer account
-     * @param string $sign
+     * @param $sign
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function transferAccount(string $sign)
+    public function transferAccount($sign)
     {
         $this->options['form_params'] = ['sign' => $sign];
         $response = $this->client->request('POST', Router::SIGN_PAYMENT_URL, $this->options);

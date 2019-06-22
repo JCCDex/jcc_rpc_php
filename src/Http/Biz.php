@@ -19,12 +19,12 @@ class Biz extends Base
 
     /**
      * get sms code
-     * @param string $phone
-     * @param string $verifyType
+     * @param $phone
+     * @param $verifyType
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getSmsCode(string $phone, string $verifyType)
+    public function getSmsCode($phone, $verifyType)
     {
         $this->options['query'] = ['verifyType' => $verifyType];
         $response = $this->client->request('GET', Router::CODE_SMS_URL . self::uniqid(8) . '/' . $phone, $this->options);
@@ -44,13 +44,13 @@ class Biz extends Base
 
     /**
      * check sms code
-     * @param string $phone
-     * @param string $verifyCode
-     * @param string $verifyCodeType
+     * @param $phone
+     * @param $verifyCode
+     * @param $verifyCodeType
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkSmsCode(string $phone, string $verifyCode, string $verifyCodeType)
+    public function checkSmsCode($phone, $verifyCode, $verifyCodeType)
     {
         $this->options['form_params'] = ['verifyCode' => $verifyCode, 'verifyCodeType' => $verifyCodeType];
         $response = $this->client->request('POST', Router::CHECK_SMS_CODE_URL . self::uniqid(8) . '/' . $phone, $this->options);
@@ -59,12 +59,12 @@ class Biz extends Base
 
     /**
      * check img code
-     * @param string $userName
-     * @param string $imgCode
+     * @param $userName
+     * @param $imgCode
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkImgCode(string $userName, string $imgCode)
+    public function checkImgCode($userName, $imgCode)
     {
         $this->options['query'] = ['verifyImgCode' => $imgCode];
         $response = $this->client->request('GET', Router::CHECK_IMG_CODE_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -85,15 +85,15 @@ class Biz extends Base
 
     /**
      * register
-     * @param string $userName
-     * @param string $password
-     * @param string $publicKey
-     * @param string $verifyCode
-     * @param string $imgCode
+     * @param $userName
+     * @param $password
+     * @param $publicKey
+     * @param $verifyCode
+     * @param $imgCode
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function register(string $userName, string $password, string $publicKey, string $verifyCode, string $imgCode)
+    public function register($userName, $password, $publicKey, $verifyCode, $imgCode)
     {
         $this->options['form_params'] = [
             'password' => $password,
@@ -109,15 +109,15 @@ class Biz extends Base
 
     /**
      * email register
-     * @param string $userName
-     * @param string $password
-     * @param string $publicKey
-     * @param string $verifyCode
-     * @param string $imgCode
+     * @param $userName
+     * @param $password
+     * @param $publicKey
+     * @param $verifyCode
+     * @param $imgCode
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function emailRegister(string $userName, string $password, string $publicKey, string $verifyCode, string $imgCode)
+    public function emailRegister($userName, $password, $publicKey, $verifyCode, $imgCode)
     {
         $this->options['form_params'] = [
             'password' => $password,
@@ -133,13 +133,13 @@ class Biz extends Base
 
     /**
      * login
-     * @param string $userName
-     * @param string $password
-     * @param string $imgCode
+     * @param $userName
+     * @param $password
+     * @param $imgCode
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function login(string $userName, string $password, string $imgCode)
+    public function login($userName, $password, $imgCode)
     {
         $this->options['form_params'] = [
             'password' => $password
@@ -153,11 +153,11 @@ class Biz extends Base
 
     /**
      * logout
-     * @param string $userName
+     * @param $userName
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function logout(string $userName)
+    public function logout($userName)
     {
         $response = $this->client->request('POST', Router::LOGOUT_URL . self::uniqid(8) . '/' . $userName, $this->options);
         return $response->getBody();
@@ -165,11 +165,11 @@ class Biz extends Base
 
     /**
      * get myself
-     * @param string $userName
+     * @param $userName
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getMyself(string $userName)
+    public function getMyself($userName)
     {
         $this->options['query'] = ['t' => microtime(true) * 1000];
         $response = $this->client->request('GET', Router::GET_MYSELF_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -178,12 +178,12 @@ class Biz extends Base
 
     /**
      * upload image
-     * @param string $userName
-     * @param string $data
+     * @param $userName
+     * @param $data
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function uploadImage(string $userName, string $data)
+    public function uploadImage($userName, $data)
     {
         $this->options['form_params'] = ['data' => $data];
         $response = $this->client->request('POST', Router::UPLOAD_IMAGE_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -192,12 +192,12 @@ class Biz extends Base
 
     /**
      * verify
-     * @param string $userName
-     * @param string $data
+     * @param $userName
+     * @param $data
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function verify(string $userName, string $data)
+    public function verify($userName, $data)
     {
         $this->options['form_params'] = ['data' => $data];
         $response = $this->client->request('POST', Router::VERIFY_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -206,13 +206,13 @@ class Biz extends Base
 
     /**
      * change mobile
-     * @param string $phone
-     * @param string $verifyCode
-     * @param string $password
+     * @param $phone
+     * @param $verifyCode
+     * @param $password
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function changeMobile(string $phone, string $verifyCode, string $password)
+    public function changeMobile($phone, $verifyCode, $password)
     {
         $this->options['form_params'] = ['verifyCode' => $verifyCode, 'password' => $password];
         $response = $this->client->request('POST', Router::BIND_PHONE_URL . self::uniqid(8) . '/' . $phone, $this->options);
@@ -221,13 +221,13 @@ class Biz extends Base
 
     /**
      * change password
-     * @param string $userName
-     * @param string $newPwd
-     * @param string $oldPwd
+     * @param $userName
+     * @param $newPwd
+     * @param $oldPwd
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function changePassword(string $userName, string $newPwd, string $oldPwd)
+    public function changePassword($userName, $newPwd, $oldPwd)
     {
         $this->options['form_params'] = ['newPwd' => $newPwd, 'oldPwd' => $oldPwd];
         $response = $this->client->request('POST', Router::CHANGE_PWD_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -236,13 +236,13 @@ class Biz extends Base
 
     /**
      * reset password
-     * @param string $userName
-     * @param string $verifyCode
-     * @param string $newPwd
+     * @param $userName
+     * @param $verifyCode
+     * @param $newPwd
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function resetPassword(string $userName, string $verifyCode, string $newPwd)
+    public function resetPassword($userName, $verifyCode, $newPwd)
     {
         $this->options['form_params'] = ['verifyCode' => $verifyCode, 'newPwd' => $newPwd];
         $response = $this->client->request('POST', Router::RESET_PWD_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -251,14 +251,14 @@ class Biz extends Base
 
     /**
      * bind email
-     * @param string $userName
-     * @param string $email
-     * @param string $verifyCode
-     * @param string $password
+     * @param $userName
+     * @param $email
+     * @param $verifyCode
+     * @param $password
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function bindEmail(string $userName, string $email, string $verifyCode, string $password)
+    public function bindEmail($userName, $email, $verifyCode, $password)
     {
         $this->options['form_params'] = ['email' => $email, 'verifyCode' => $verifyCode, 'password' => $password];
         $response = $this->client->request('POST', Router::BIND_EMAIL_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -267,12 +267,12 @@ class Biz extends Base
 
     /**
      * upload wallet
-     * @param string $userName
-     * @param string $publicKey
+     * @param $userName
+     * @param $publicKey
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function uploadWallet(string $userName, string $publicKey)
+    public function uploadWallet($userName, $publicKey)
     {
         $this->options['form_params'] = ['publicKey' => $publicKey];
         $response = $this->client->request('POST', Router::UPLOAD_WALLET_URL . self::uniqid(8) . '/' . $userName, $this->options);
@@ -281,11 +281,11 @@ class Biz extends Base
 
     /**
      * get token
-     * @param string $userName
+     * @param $userName
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getToken(string $userName)
+    public function getToken($userName)
     {
         $response = $this->client->request('GET', Router::TOKEN_URL . self::uniqid(8) . '/' . $userName, $this->options);
         return $response->getBody();
@@ -293,11 +293,11 @@ class Biz extends Base
 
     /**
      * get help
-     * @param string $url
+     * @param $url
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getHelp(string $url)
+    public function getHelp($url)
     {
         $response = $this->client->request('GET', $url, $this->options);
         return $response->getBody();
@@ -305,11 +305,11 @@ class Biz extends Base
 
     /**
      * get about
-     * @param string $url
+     * @param $url
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getAbout(string $url)
+    public function getAbout($url)
     {
         $response = $this->client->request('GET', $url, $this->options);
         return $response->getBody();
@@ -317,17 +317,17 @@ class Biz extends Base
 
     /**
      * create deposit order
-     * @param string $userName
-     * @param string $base
-     * @param string $amount
-     * @param string $baseWallet
-     * @param string $jtWallet
-     * @param string $agentWallet
-     * @param string $agentID
+     * @param $userName
+     * @param $base
+     * @param $amount
+     * @param $baseWallet
+     * @param $jtWallet
+     * @param $agentWallet
+     * @param $agentID
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function createDepositOrder(string $userName, string $base, string $amount, string $baseWallet, string $jtWallet, string $agentWallet, string $agentID)
+    public function createDepositOrder($userName, $base, $amount, $baseWallet, $jtWallet, $agentWallet, $agentID)
     {
         $this->options['form_params'] = [
             'base' => $base,
@@ -343,13 +343,13 @@ class Biz extends Base
 
     /**
      * cancel deposit order
-     * @param string $userName
-     * @param string $base
-     * @param string $orderID
+     * @param $userName
+     * @param $base
+     * @param $orderID
      * @return \Psr\Http\Message\StreamInterface
      * @throws \Exception
      */
-    public function cancelDepositOrder(string $userName, string $base, string $orderID)
+    public function cancelDepositOrder($userName, $base, $orderID)
     {
         $this->options['form_params'] = [
             'base' => $base,
@@ -361,14 +361,14 @@ class Biz extends Base
 
     /**
      * update deposit order
-     * @param string $userName
-     * @param string $base
-     * @param string $orderID
-     * @param string $hash
+     * @param $userName
+     * @param $base
+     * @param $orderID
+     * @param $hash
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updateDepositOrder(string $userName, string $base, string $orderID, string $hash)
+    public function updateDepositOrder($userName, $base, $orderID, $hash)
     {
         $this->options['form_params'] = [
             'base' => $base,
@@ -381,13 +381,13 @@ class Biz extends Base
 
     /**
      * get deposit detail
-     * @param string $userName
-     * @param string $base
-     * @param string $orderID
+     * @param $userName
+     * @param $base
+     * @param $orderID
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getDepositDetail(string $userName, string $base, string $orderID)
+    public function getDepositDetail($userName, $base, $orderID)
     {
         $this->options['query'] = [
             'base' => $base,
@@ -399,12 +399,12 @@ class Biz extends Base
 
     /**
      * get pending deposit
-     * @param string $userName
-     * @param string $base
+     * @param $userName
+     * @param $base
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getPendingDeposit(string $userName, string $base)
+    public function getPendingDeposit($userName, $base)
     {
         $this->options['query'] = [
             'base' => $base
@@ -415,13 +415,13 @@ class Biz extends Base
 
     /**
      * get deposit orders
-     * @param string $userName
-     * @param string $base
-     * @param int $page
+     * @param $userName
+     * @param $base
+     * @param $page
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getDepositOrders(string $userName, string $base, int $page)
+    public function getDepositOrders($userName, $base, $page)
     {
         $this->options['query'] = [
             'page' => $page,
@@ -433,17 +433,17 @@ class Biz extends Base
 
     /**
      * create withdraw order
-     * @param string $userName
-     * @param string $base
-     * @param string $amount
-     * @param string $baseWallet
-     * @param string $jtWallet
-     * @param string $agentWallet
-     * @param string $agentID
+     * @param $userName
+     * @param $base
+     * @param $amount
+     * @param $baseWallet
+     * @param $jtWallet
+     * @param $agentWallet
+     * @param $agentID
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function createWithdrawOrder(string $userName, string $base, string $amount, string $baseWallet, string $jtWallet, string $agentWallet, string $agentID)
+    public function createWithdrawOrder($userName, $base, $amount, $baseWallet, $jtWallet, $agentWallet, $agentID)
     {
         $this->options['form_params'] = [
             'base' => $base,
@@ -459,13 +459,13 @@ class Biz extends Base
 
     /**
      * get withdraw orders
-     * @param string $userName
-     * @param string $base
-     * @param string $page
+     * @param $userName
+     * @param $base
+     * @param $page
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getWithdrawOrders(string $userName, string $base, string $page)
+    public function getWithdrawOrders($userName, $base, $page)
     {
         $this->options['query'] = [
             'base' => $base,
@@ -477,13 +477,13 @@ class Biz extends Base
 
     /**
      * update withdraw order
-     * @param string $userName
-     * @param string $orderID
-     * @param string $hash
+     * @param $userName
+     * @param $orderID
+     * @param $hash
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updateWithdrawOrder(string $userName, string $orderID, string $hash)
+    public function updateWithdrawOrder($userName, $orderID, $hash)
     {
         $this->options['form_params'] = [
             'orderID' => $orderID,
@@ -495,13 +495,13 @@ class Biz extends Base
 
     /**
      * get withdraw detail
-     * @param string $userName
-     * @param string $base
-     * @param string $orderID
+     * @param $userName
+     * @param $base
+     * @param $orderID
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getWithdrawDetail(string $userName, string $base, string $orderID)
+    public function getWithdrawDetail($userName, $base, $orderID)
     {
         $this->options['query'] = [
             'base' => $base,
@@ -513,12 +513,12 @@ class Biz extends Base
 
     /**
      * get agent info
-     * @param string $userName
-     * @param string $base
+     * @param $userName
+     * @param $base
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getAgentInfo(string $userName, string $base)
+    public function getAgentInfo($userName, $base)
     {
         $this->options['query'] = [
             'base' => $base
@@ -529,11 +529,11 @@ class Biz extends Base
 
     /**
      * get coin list
-     * @param string $userName
+     * @param $userName
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getCoinlist(string $userName)
+    public function getCoinlist($userName)
     {
         $response = $this->client->request('GET', Router::COIN_LIST_URL. self::uniqid(8) . '/' . $userName, $this->options);
         return $response->getBody();
@@ -541,11 +541,11 @@ class Biz extends Base
 
     /**
      * get news report list
-     * @param int $count
+     * @param $count
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getNewsReportList(int $count)
+    public function getNewsReportList($count)
     {
         $this->options['query'] = [
             'count' => $count
@@ -556,12 +556,12 @@ class Biz extends Base
 
     /**
      * get notice list
-     * @param int $type
-     * @param int $count
+     * @param $type
+     * @param $count
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getNoticeList(int $type, int $count)
+    public function getNoticeList($type, $count)
     {
         $this->options['query'] = [
             'type' => $type,

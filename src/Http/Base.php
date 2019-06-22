@@ -1,6 +1,6 @@
 <?php
 /**
- * 基础控制器
+ * Base controller
  */
 
 namespace JccDex\Http;
@@ -22,7 +22,7 @@ class Base
     /**
      * @var Port
      */
-    private $port = '80';
+    private $port = 80;
 
     /**
      * @var Url
@@ -96,7 +96,7 @@ class Base
     }
 
     /**
-     * 生产随机小数
+     * Generate random decimals
      * @param int $min
      * @param int $max
      * @return float|int
@@ -107,14 +107,13 @@ class Base
     }
 
     /**
-     * uuid
+     * uniqid gives 13 chars, but you could adjust it to your needs.
      * @param int $lenght
      * @return bool|string
      * @throws \Exception
      */
     public static function uniqid($lenght = 13)
     {
-        // uniqid gives 13 chars, but you could adjust it to your needs.
         if (function_exists("random_bytes")) {
             $bytes = random_bytes(ceil($lenght / 2));
         } elseif (function_exists("openssl_random_pseudo_bytes")) {
