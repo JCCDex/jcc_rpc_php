@@ -38,7 +38,7 @@ class Info extends Base
     public function getTicker($base, $counter)
     {
         $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::TICKER_URL . $base, $this->options);
+        $response = $this->client->request('GET', Router::TICKER_URL . $currency, $this->options);
         return $response->getBody();
     }
 
@@ -53,7 +53,7 @@ class Info extends Base
     public function getDepth($base, $counter, $type)
     {
         $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::DEPTH_URL . $base . '/' . $type, $this->options);
+        $response = $this->client->request('GET', Router::DEPTH_URL . $currency . '/' . $type, $this->options);
         return $response->getBody();
     }
 
@@ -68,7 +68,7 @@ class Info extends Base
     public function getKline($base, $counter, $type)
     {
         $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::KLINE_URL . $base . '/' . $type, $this->options);
+        $response = $this->client->request('GET', Router::KLINE_URL . $currency . '/' . $type, $this->options);
         return $response->getBody();
     }
 

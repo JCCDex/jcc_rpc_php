@@ -24,13 +24,19 @@ class InfoTest extends TestCase
 
     public function testGetTicker()
     {
-        $response = $this->info->getTicker('SWT', 'CNY.jhmj8NJPBhE6js5fJw5Ms1a3xNX2ZuouwF');
+        $response = $this->info->getTicker('JJCC', 'CNY');
         $this->assertJson($response);
     }
 
     public function testGetDepth()
     {
-        $response = $this->info->getDepth('JJCC-SWT', 'CNT.jhmj8NJPBhE6js5fJw5Ms1a3xNX2ZuouwF', 'hour');
+        $response = $this->info->getDepth('JJCC', 'SWT', 'normal');
+        $this->assertJson($response);
+    }
+
+    public function testGetKline()
+    {
+        $response = $this->info->getKline('JJCC', 'SWT', 'hour');
         $this->assertJson($response);
     }
 }
