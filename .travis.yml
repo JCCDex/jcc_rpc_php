@@ -3,9 +3,9 @@ language: php
 php:
   - 7.2
   - 7.3
-  - nightly
+#  - nightly
 
 before_script:
-  - composer install --no-interaction --prefer-source --dev
+  - composer install
 
-script: vendor/bin/phpunit -v
+script: ./vendor/bin/phpunit -c phpunit.xml
