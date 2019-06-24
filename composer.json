@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2.*",
+        "php": ">=7.2",
         "hprose/hprose-php": "dev-master",
         "guzzlehttp/guzzle": "^6.3@dev"
     },
