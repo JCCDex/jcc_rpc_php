@@ -2,15 +2,18 @@
     "name": "jccdex/jcc_rpc_php",
     "description": "a php jcc rpc framework",
     "license": "MIT",
+    "keywords": [
+        "jcc",
+        "rpc"
+    ],
     "authors": [
         {
             "name": "gxheart",
             "email": "bbxycx.18@163.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.2",
         "hprose/hprose-php": "dev-master",
         "guzzlehttp/guzzle": "^6.3@dev"
     },
@@ -25,6 +28,11 @@
     "autoload-dev": {
         "psr-4": {
             "JccDex\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0-dev"
         }
     }
 }

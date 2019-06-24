@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/github/license/JCCDex/jcc_rpc_php.svg)](https://packagist.org/packages/jccdex/jcc_rpc_php)
 [![Total Downloads](https://poser.pugx.org/jccdex/jcc_rpc_php/downloads)](https://packagist.org/packages/jccdex/jcc_rpc_php)
+[![Build Status](https://travis-ci.org/chenxi2015/jcc_rpc_php.svg?branch=master)](https://travis-ci.org/chenxi2015/jcc_rpc_php)
 [![Latest Unstable Version](https://poser.pugx.org/jccdex/jcc_rpc_php/v/unstable)](https://packagist.org/packages/jccdex/jcc_rpc_php)
 
 ## Help and docs
