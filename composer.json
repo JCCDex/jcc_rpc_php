@@ -8,9 +8,8 @@
             "email": "bbxycx.18@163.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.2.*",
         "hprose/hprose-php": "dev-master",
         "guzzlehttp/guzzle": "^6.3@dev"
     },
