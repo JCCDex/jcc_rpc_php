@@ -2,6 +2,10 @@
     "name": "jccdex/jcc_rpc_php",
     "description": "a php jcc rpc framework",
     "license": "MIT",
+    "keywords": [
+        "jcc",
+        "rpc"
+    ],
     "authors": [
         {
             "name": "gxheart",
