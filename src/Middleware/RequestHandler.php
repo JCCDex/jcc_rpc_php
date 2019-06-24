@@ -13,7 +13,7 @@ class RequestHandler
      */
     public function __invoke(callable $handler)
     {
-        return function (RequestInterface $request, array $options) use ($handler) {
+        return function(RequestInterface $request, array $options) use ($handler) {
             return $handler($request, $options);
         };
     }

@@ -442,7 +442,7 @@ class Biz extends Base
                 'base' => $base,
                 'orderID' => $orderID
             ];
-            $response = $this->client->delete(Router::CANCEL_DEPOSIT_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->delete(Router::CANCEL_DEPOSIT_ORDER_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -466,7 +466,7 @@ class Biz extends Base
                 'orderID' => $orderID,
                 'hash' => $hash
             ];
-            $response = $this->client->request('POST', Router::UPDATE_DEPOSIT_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('POST', Router::UPDATE_DEPOSIT_ORDER_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -488,7 +488,7 @@ class Biz extends Base
                 'base' => $base,
                 'orderID' => $orderID
             ];
-            $response = $this->client->request('GET', Router::ORDER_DETAIL_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::ORDER_DETAIL_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -508,7 +508,7 @@ class Biz extends Base
             $this->options['query'] = [
                 'base' => $base
             ];
-            $response = $this->client->request('GET', Router::PENDING_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::PENDING_ORDER_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -530,7 +530,7 @@ class Biz extends Base
                 'page' => $page,
                 'base' => $base
             ];
-            $response = $this->client->request('GET', Router::MY_ORDERS_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::MY_ORDERS_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -560,7 +560,7 @@ class Biz extends Base
                 'agentWallet' => $agentWallet,
                 'agentID' => $agentID,
             ];
-            $response = $this->client->request('POST', Router::TW_CREATE_ORDERS_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('POST', Router::TW_CREATE_ORDERS_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -582,7 +582,7 @@ class Biz extends Base
                 'base' => $base,
                 'page' => $page
             ];
-            $response = $this->client->request('GET', Router::TW_MY_ORDERS_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::TW_MY_ORDERS_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -604,7 +604,7 @@ class Biz extends Base
                 'orderID' => $orderID,
                 'hash' => $hash
             ];
-            $response = $this->client->request('POST', Router::TW_UPDATE_ORDER_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('POST', Router::TW_UPDATE_ORDER_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -626,7 +626,7 @@ class Biz extends Base
                 'base' => $base,
                 'orderID' => $orderID
             ];
-            $response = $this->client->request('GET', Router::TW_ORDER_DETAIL_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::TW_ORDER_DETAIL_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -646,7 +646,7 @@ class Biz extends Base
             $this->options['query'] = [
                 'base' => $base
             ];
-            $response = $this->client->request('GET', Router::AGENT_INFO_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::AGENT_INFO_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -662,7 +662,7 @@ class Biz extends Base
     public function getCoinlist($userName)
     {
         try {
-            $response = $this->client->request('GET', Router::COIN_LIST_URL. self::uniqid(8) . '/' . $userName, $this->options);
+            $response = $this->client->request('GET', Router::COIN_LIST_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -681,7 +681,7 @@ class Biz extends Base
             $this->options['query'] = [
                 'count' => $count
             ];
-            $response = $this->client->request('GET', Router::ADV_INFO_URL. self::uniqid(8), $this->options);
+            $response = $this->client->request('GET', Router::ADV_INFO_URL . self::uniqid(8), $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
@@ -702,7 +702,7 @@ class Biz extends Base
                 'type' => $type,
                 'count' => $count
             ];
-            $response = $this->client->request('GET', Router::ADV_NOTICE_URL. self::uniqid(8), $this->options);
+            $response = $this->client->request('GET', Router::ADV_NOTICE_URL . self::uniqid(8), $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
