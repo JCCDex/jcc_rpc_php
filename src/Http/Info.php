@@ -2,6 +2,7 @@
 
 namespace JccDex\Http;
 
+use GuzzleHttp\Exception\ClientException;
 use JccDex\Router;
 
 class Info extends Base
@@ -18,6 +19,21 @@ class Info extends Base
     }
 
     /**
+     * get all tickers
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getAllTickers()
+    {
+        try {
+            $response = $this->client->request('GET', Router::ALLTICKERS_URL, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+    /**
      * get ticker info
      * @param $base
      * @param $counter
@@ -26,20 +42,13 @@ class Info extends Base
      */
     public function getTicker($base, $counter)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::TICKER_URL . $currency, $this->options);
-        return $response->getBody();
-    }
-
-    /**
-     * get all tickers
-     * @return \Psr\Http\Message\StreamInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function getAllTickers()
-    {
-        $response = $this->client->request('GET', Router::ALLTICKERS_URL, $this->options);
-        return $response->getBody();
+        try {
+            $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+            $response = $this->client->request('GET', Router::TICKER_URL . $currency, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -52,9 +61,13 @@ class Info extends Base
      */
     public function getDepth($base, $counter, $type)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::DEPTH_URL . $currency . '/' . $type, $this->options);
-        return $response->getBody();
+        try {
+            $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+            $response = $this->client->request('GET', Router::DEPTH_URL . $currency . '/' . $type, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -67,9 +80,13 @@ class Info extends Base
      */
     public function getKline($base, $counter, $type)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $response = $this->client->request('GET', Router::KLINE_URL . $currency . '/' . $type, $this->options);
-        return $response->getBody();
+        try {
+            $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+            $response = $this->client->request('GET', Router::KLINE_URL . $currency . '/' . $type, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -83,11 +100,15 @@ class Info extends Base
      */
     public function getHistory($base, $counter, $type, $time)
     {
-        $currency = strtoupper($base) . '-' . str_replace('/CNT/i', 'CNY', strtoupper($counter));
-        $params = $type === 'newest' ? ['time' => $time] : [];
-        $this->options['query'] = $params;
-        $response = $this->client->request('GET', Router::HISTORY_URL . $currency . '/' . $type, $this->options);
-        return $response->getBody();
+        try {
+            $currency = strtoupper($base) . '-' . str_replace('CNT', 'CNY', strtoupper($counter));
+            $params = $type === 'newest' ? ['time' => $time] : [];
+            $this->options['query'] = $params;
+            $response = $this->client->request('GET', Router::HISTORY_URL . $currency . '/' . $type, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -99,8 +120,12 @@ class Info extends Base
      */
     public function getTickerFromCMC($token, $currency)
     {
-        $this->options['query'] = ['t' => microtime(true) * 1000];
-        $response = $this->client->request('GET', '/' . strtolower($token) . '_' . strtolower($currency) . '.json', $this->options);
-        return $response->getBody();
+        try {
+            $this->options['query'] = ['t' => microtime(true) * 1000];
+            $response = $this->client->request('GET', '/' . strtolower($token) . '_' . strtolower($currency) . '.json', $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 }

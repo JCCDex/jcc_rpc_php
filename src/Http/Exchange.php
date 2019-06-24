@@ -2,6 +2,7 @@
 
 namespace JccDex\Http;
 
+use GuzzleHttp\Exception\ClientException;
 use JccDex\Router;
 
 class Exchange extends Base
@@ -25,8 +26,12 @@ class Exchange extends Base
      */
     public function getBalances($address)
     {
-        $response = $this->client->request('GET', Router::BALANCE_URL . $address, $this->options);
-        return $response->getBody();
+        try {
+            $response = $this->client->request('GET', Router::BALANCE_URL . $address, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -39,10 +44,14 @@ class Exchange extends Base
      */
     public function getHistoricTransactions($address, int $ledger, int $seq)
     {
-        $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
-        $this->options['query'] = $params;
-        $response = $this->client->request('GET', Router::TX_URL . $address, $this->options);
-        return $response->getBody();
+        try {
+            $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
+            $this->options['query'] = $params;
+            $response = $this->client->request('GET', Router::TX_URL . $address, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -55,10 +64,14 @@ class Exchange extends Base
      */
     public function getHistoricPayments($address, int $ledger, int $seq)
     {
-        $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
-        $this->options['query'] = $params;
-        $response = $this->client->request('GET', Router::PAYMENTS_URL . $address, $this->options);
-        return $response->getBody();
+        try {
+            $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
+            $this->options['query'] = $params;
+            $response = $this->client->request('GET', Router::PAYMENTS_URL . $address, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -70,8 +83,12 @@ class Exchange extends Base
      */
     public function getOrders($address, int $page)
     {
-        $response = $this->client->request('GET', Router::ORDERS_URL . $address . '/' . $page, $this->options);
-        return $response->getBody();
+        try {
+            $response = $this->client->request('GET', Router::ORDERS_URL . $address . '/' . $page, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -82,9 +99,13 @@ class Exchange extends Base
      */
     public function createOrder($sign)
     {
-        $this->options['form_params'] = ['sign' => $sign];
-        $response = $this->client->request('POST', Router::SIGN_ORDER_URL, $this->options);
-        return $response->getBody();
+        try {
+            $this->options['form_params'] = ['sign' => $sign];
+            $response = $this->client->request('POST', Router::SIGN_ORDER_URL, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -94,9 +115,13 @@ class Exchange extends Base
      */
     public function deleteOrder($sign)
     {
-        $this->options['form_params'] = ['sign' => $sign];
-        $response = $this->client->delete(Router::SIGN_CANCEL_ORDER_URL, $this->options);
-        return $response->getBody();
+        try {
+            $this->options['form_params'] = ['sign' => $sign];
+            $response = $this->client->delete(Router::SIGN_CANCEL_ORDER_URL, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -107,8 +132,12 @@ class Exchange extends Base
      */
     public function getSequence($address)
     {
-        $response = $this->client->request('GET', Router::SEQUENCE_URL . $address, $this->options);
-        return $response->getBody();
+        try {
+            $response = $this->client->request('GET', Router::SEQUENCE_URL . $address, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
     /**
@@ -119,9 +148,13 @@ class Exchange extends Base
      */
     public function transferAccount($sign)
     {
-        $this->options['form_params'] = ['sign' => $sign];
-        $response = $this->client->request('POST', Router::SIGN_PAYMENT_URL, $this->options);
-        return $response->getBody();
+        try {
+            $this->options['form_params'] = ['sign' => $sign];
+            $response = $this->client->request('POST', Router::SIGN_PAYMENT_URL, $this->options);
+            return $response->getBody();
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
     }
 
 }
