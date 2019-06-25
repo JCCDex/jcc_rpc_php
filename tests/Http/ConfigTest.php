@@ -9,10 +9,17 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
+    private $config;
+
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->config = new Config("jccdex.cn", 443, true);
+    }
+
     public function testGetConfig()
     {
-        $config = new Config("jccdex.cn", 443, true);
-        $response = $config->getConfig();
+        $response = $this->config->getConfig();
         $this->assertJson($response, '获取配置');
     }
 }

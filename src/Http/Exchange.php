@@ -37,12 +37,12 @@ class Exchange extends Base
     /**
      * get historic transactions
      * @param $address
-     * @param int $ledger
-     * @param int $seq
+     * @param $ledger
+     * @param $seq
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getHistoricTransactions($address, int $ledger, int $seq)
+    public function getHistoricTransactions($address, $ledger='', $seq='')
     {
         try {
             $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
@@ -57,12 +57,12 @@ class Exchange extends Base
     /**
      * get historic payments
      * @param $address
-     * @param int $ledger
-     * @param int $seq
+     * @param $ledger
+     * @param $seq
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getHistoricPayments($address, int $ledger, int $seq)
+    public function getHistoricPayments($address, $ledger='', $seq='')
     {
         try {
             $params = intval($ledger) && intval($seq) ? ['ledger' => $ledger, 'seq' => $seq] : [];
@@ -77,11 +77,11 @@ class Exchange extends Base
     /**
      * get orders
      * @param $address
-     * @param int $page
+     * @param $page
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getOrders($address, int $page)
+    public function getOrders($address, $page)
     {
         try {
             $response = $this->client->request('GET', Router::ORDERS_URL . $address . '/' . $page, $this->options);
