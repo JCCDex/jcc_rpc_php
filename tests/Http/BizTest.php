@@ -5,7 +5,6 @@ namespace JccDex\Tests;
 
 
 use JccDex\Http\Biz;
-use JccDex\Http\Config;
 use PHPUnit\Framework\TestCase;
 
 class BizTest extends TestCase

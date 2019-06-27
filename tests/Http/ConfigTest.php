@@ -20,6 +20,6 @@ class ConfigTest extends TestCase
     public function testGetConfig()
     {
         $response = $this->config->getConfig();
-        $this->assertJson($response, '获取配置');
+        $this->assertJson($response, '获取成功');
     }
 }
