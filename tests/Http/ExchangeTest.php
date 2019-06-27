@@ -4,7 +4,6 @@
 namespace JccDex\Tests;
 
 
-use JccDex\Http\Config;
 use JccDex\Http\Exchange;
 use PHPUnit\Framework\TestCase;
 
@@ -62,7 +61,7 @@ class ExchangeTest extends TestCase
 
     public function testTransferAccount()
     {
-        $response = $this->exchange->getSequence('jhmj8NJPBhE6js5fJw5Ms1a3xNX2ZuouwF');
+        $response = $this->exchange->transferAccount('jhmj8NJPBhE6js5fJw5Ms1a3xNX2ZuouwF');
         $this->assertJson($response, '获取成功');
     }
 

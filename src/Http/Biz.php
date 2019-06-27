@@ -28,7 +28,6 @@ class Biz extends Base
     public function getSmsCode($phone, $verifyType)
     {
         try {
-
             $this->options['query'] = ['verifyType' => $verifyType];
             $response = $this->client->request('GET', Router::CODE_SMS_URL . self::uniqid(8) . '/' . $phone, $this->options);
             return $response->getBody();
