@@ -419,7 +419,7 @@ class Biz extends Base
                 'agentWallet' => $agentWallet,
                 'agentID' => $agentID
             ];
-            $response = $this->client->request('POST', Router::CREATE_DEPOSIT_ORDER_URL, $this->options);
+            $response = $this->client->request('POST', Router::CREATE_DEPOSIT_ORDER_URL . self::uniqid(8) . '/' . $userName, $this->options);
             return $response->getBody();
         } catch (ClientException $e) {
             return $this->errorResponse($e);
