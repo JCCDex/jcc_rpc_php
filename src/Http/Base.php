@@ -6,7 +6,6 @@
 namespace JccDex\Http;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\CurlHandler;
 use JccDex\Middleware\RequestHandler;
