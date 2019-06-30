@@ -25,7 +25,7 @@ composer require jccdex/jcc_rpc_php
 
 ## Config API
 
-##### getConfig
+#### getConfig
 ```php
 use JccDex\Http\Config;
 $config = new Config(['jccdex.cn', 'eth626892d.jccdex.cn'], 443, true);
@@ -40,7 +40,7 @@ firstly Instantiate an object
 use JccDex\Http\Exchange;
 $exchange = new Exchange(['ewdjbbl8jgf.jccdex.cn'], 443, true);
 ```
-##### getBalances
+#### getBalances
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -50,7 +50,7 @@ parameters
 echo $exchange->getBalances($address);
 ```
 
-##### getHistoricTransactions
+#### getHistoricTransactions
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -62,7 +62,7 @@ parameters
 echo $exchange->getHistoricTransactions($address, $ledger, $seq);
 ```
 
-##### getHistoricPayments
+#### getHistoricPayments
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -74,7 +74,7 @@ parameters
 echo $exchange->getHistoricPayments($address, $ledger, $seq);
 ```
 
-##### getOrders
+#### getOrders
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -85,7 +85,7 @@ parameters
 echo $exchange->getOrders($address, $page);
 ```
 
-##### createOrder
+#### createOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -95,7 +95,7 @@ parameters
 echo $exchange->createOrder($sign);
 ```
 
-##### deleteOrder
+#### deleteOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -105,7 +105,7 @@ parameters
 echo $exchange->deleteOrder($sign);
 ```
 
-##### getSequence
+#### getSequence
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -115,7 +115,7 @@ parameters
 echo $exchange->getSequence($address);
 ```
 
-##### transferAccount
+#### transferAccount
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -132,13 +132,13 @@ use JccDex\Http\Info;
 $info = new Info(["i3b44eb75ef.jccdex.cn", "i059e8792d5.jccdex.cn", "i352fb2ef56.jccdex.cn"], 443, true);
 ```
 
-##### getAllTickers
+#### getAllTickers
 
 ```php
 echo $info->getAllTickers();
 ```
 
-##### getTicker
+#### getTicker
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -149,7 +149,7 @@ parameters
 echo $exchange->getTicker($base, $counter);
 ```
 
-##### getDepth
+#### getDepth
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -161,7 +161,7 @@ parameters
 echo $exchange->getDepth($base, $counter, $type);
 ```
 
-##### getKline
+#### getKline
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -173,7 +173,7 @@ parameters
 echo $exchange->getKline($base, $counter, $type);
 ```
 
-##### getHistory
+#### getHistory
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -186,7 +186,7 @@ parameters
 echo $exchange->getHistory($base, $counter, $type, $time);
 ```
 
-##### getTickerFromCMC
+#### getTickerFromCMC
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -204,7 +204,7 @@ use JccDex\Http\Biz;
 $biz = new Biz(['ewdjbbl8jgf.jccdex.cn'], 443, true);
 ```
 
-##### getSmsCode
+#### getSmsCode
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -215,13 +215,13 @@ parameters
 echo $biz->getSmsCode($phone, $verifyType);
 ```
 
-##### getImgCode
+#### getImgCode
 
 ```php
 echo $biz->getImgCode($phone, $verifyType);
 ```
 
-##### checkSmsCode
+#### checkSmsCode
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -233,7 +233,7 @@ parameters
 echo $biz->checkSmsCode($phone, $verifyType, $verifyCodeType);
 ```
 
-##### checkImgCode
+#### checkImgCode
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -244,7 +244,7 @@ parameters
 echo $biz->checkImgCode($userName, $imgCode);
 ```
 
-##### isActive
+#### isActive
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -254,7 +254,7 @@ parameters
 echo $biz->isActive($userName);
 ```
 
-##### register
+#### register
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -268,7 +268,7 @@ parameters
 echo $biz->register($userName, $password, $publicKey, $verifyCode, $imgCode);
 ```
 
-##### emailRegister
+#### emailRegister
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -282,7 +282,7 @@ parameters
 echo $biz->emailRegister($userName, $password, $publicKey, $verifyCode, $imgCode);
 ```
 
-##### login
+#### login
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -294,7 +294,7 @@ parameters
 echo $biz->login($userName, $password, $imgCode);
 ```
 
-##### logout
+#### logout
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -304,7 +304,7 @@ parameters
 echo $biz->logout($userName);
 ```
 
-##### getMyself
+#### getMyself
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -314,7 +314,7 @@ parameters
 echo $biz->getMyself($userName);
 ```
 
-##### uploadImage
+#### uploadImage
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -326,7 +326,7 @@ echo $biz->uploadImage($userName, $data);
 ```
 
 
-##### verify
+#### verify
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -337,7 +337,7 @@ parameters
 echo $biz->verify($userName, $data);
 ```
 
-##### changeMobile
+#### changeMobile
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -349,7 +349,7 @@ parameters
 echo $biz->changeMobile($phone, $verifyCode, $password);
 ```
 
-##### changePassword
+#### changePassword
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -361,7 +361,7 @@ parameters
 echo $biz->changePassword($userName, $newPwd, $oldPwd);
 ```
 
-##### resetPassword
+#### resetPassword
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -373,7 +373,7 @@ parameters
 echo $biz->resetPassword($userName, $verifyCode, $oldPwd);
 ```
 
-##### bindEmail
+#### bindEmail
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -386,7 +386,7 @@ parameters
 echo $biz->bindEmail($userName, $email, $verifyCode, $password);
 ```
 
-##### uploadWallet
+#### uploadWallet
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -397,7 +397,7 @@ parameters
 echo $biz->uploadWallet($userName, $publicKey);
 ```
 
-##### getToken
+#### getToken
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -407,7 +407,7 @@ parameters
 echo $biz->getToken($userName);
 ```
 
-##### getHelp
+#### getHelp
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -417,7 +417,7 @@ parameters
 echo $biz->getHelp($url);
 ```
 
-##### getAbout
+#### getAbout
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -427,7 +427,7 @@ parameters
 echo $biz->getAbout($url);
 ```
 
-##### createDepositOrder
+#### createDepositOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -443,7 +443,7 @@ parameters
 echo $biz->createDepositOrder($userName, $base, $amount, $baseWallet, $jtWallet, $agentWallet, $agentID);
 ```
 
-##### cancelDepositOrder
+#### cancelDepositOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -456,7 +456,7 @@ echo $biz->cancelDepositOrder($userName, $base, $orderID);
 ```
 
 
-##### updateDepositOrder
+#### updateDepositOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -469,7 +469,7 @@ parameters
 echo $biz->updateDepositOrder($userName, $base, $orderID, $hash);
 ```
 
-##### getDepositDetail
+#### getDepositDetail
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -481,7 +481,7 @@ parameters
 echo $biz->getDepositDetail($userName, $base, $orderID);
 ```
 
-##### getPendingDeposit
+#### getPendingDeposit
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -492,7 +492,7 @@ parameters
 echo $biz->getPendingDeposit($userName, $base);
 ```
 
-##### getDepositOrders
+#### getDepositOrders
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -504,7 +504,7 @@ parameters
 echo $biz->getDepositOrders($userName, $base, $page);
 ```
 
-##### createWithdrawOrder
+#### createWithdrawOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -520,7 +520,7 @@ parameters
 echo $biz->createWithdrawOrder($userName, $base, $amount, $baseWallet, $jtWallet, $agentWallet, $agentID);
 ```
 
-##### getWithdrawOrders
+#### getWithdrawOrders
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -532,7 +532,7 @@ parameters
 echo $biz->getWithdrawOrders($userName, $base, $page);
 ```
 
-##### updateWithdrawOrder
+#### updateWithdrawOrder
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -544,7 +544,7 @@ parameters
 echo $biz->updateWithdrawOrder($userName, $orderID, $hash);
 ```
 
-##### getWithdrawDetail
+#### getWithdrawDetail
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -556,7 +556,7 @@ parameters
 echo $biz->getWithdrawDetail($userName, $base, $orderID);
 ```
 
-##### getAgentInfo
+#### getAgentInfo
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -567,7 +567,7 @@ parameters
 echo $biz->getAgentInfo($userName, $base);
 ```
 
-##### getCoinlist
+#### getCoinlist
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -577,7 +577,7 @@ parameters
 echo $biz->getCoinlist($userName);
 ```
 
-##### getNewsReportList
+#### getNewsReportList
 parameters
 
 | 参数名 | 类型 | 必填 |
@@ -587,7 +587,7 @@ parameters
 echo $biz->getNewsReportList($count);
 ```
 
-##### getNoticeList
+#### getNoticeList
 parameters
 
 | 参数名 | 类型 | 必填 |
