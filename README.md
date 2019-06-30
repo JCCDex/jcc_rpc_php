@@ -15,7 +15,7 @@ Next, run the Composer command to install the latest stable version of jcc_rpc_p
 ```php
 php composer.phar require jccdex/jcc_rpc_php
 
-# OR ceshi
+# OR
 
 composer require jccdex/jcc_rpc_php
 ```
