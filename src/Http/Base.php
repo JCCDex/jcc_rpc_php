@@ -65,7 +65,6 @@ class Base
         $this->client = new Client([
             'verify' => false,
             'base_uri' => $this->getUrl(),
-            'timeout' => 3000,
             'handler' => $stack
         ]);
     }
